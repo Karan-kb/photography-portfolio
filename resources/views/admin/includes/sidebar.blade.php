@@ -66,6 +66,20 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#aboutphotoCollapse" data-toggle="collapse" aria-expanded="true"
+            aria-controls="aboutphotoCollapse">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>About Photo</span>
+        </a>
+        <div id="aboutphotoCollapse" class="collapse" aria-labelledby="aboutHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-about-photo-extra')}}">View About Photo</a>
+                <a class="collapse-item" href="{{route('add-about-photo-extra')}}">Add About Photo</a>
+            </div>
+        </div>
+    </li>
+
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#teamCollapse" data-toggle="collapse" aria-expanded="true"
@@ -125,6 +139,20 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#blogphotoCollapse" data-toggle="collapse" aria-expanded="true"
+            aria-controls="blogphotoCollapse">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Blog Photo</span>
+        </a>
+        <div id="blogphotoCollapse" class="collapse" aria-labelledby="aboutHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-blog-photo-extra')}}">View Blog Photo</a>
+                <a class="collapse-item" href="{{route('add-blog-photo-extra')}}">Add Blog Photo</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -155,6 +183,36 @@
             </div>
         </div>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#contactphotoCollapse" data-toggle="collapse" aria-expanded="true"
+        aria-controls="contactphotoCollapse">
+        <i class="fas fa-address-book"></i>
+        <span>Contacts Photo</span>
+    </a>
+        <div id="contactphotoCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-contacts-photo-extra')}}">View Contacts Photo</a>
+                <a class="collapse-item" href="{{route('add-contacts-photo-extra')}}">Add Contacts Photo</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#contactlinkCollapse" data-toggle="collapse" aria-expanded="true"
+        aria-controls="contactlinkCollapse">
+        <i class="fas fa-address-book"></i>
+        <span>Contacts Links</span>
+    </a>
+        <div id="contactlinkCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-contacts-link')}}">View Contacts Link</a>
+                <a class="collapse-item" href="{{route('add-contacts-link')}}">Add Contacts Link</a>
+            </div>
+        </div>
+    </li>
+
+    
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

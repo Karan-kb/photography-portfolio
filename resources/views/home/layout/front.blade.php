@@ -9,10 +9,10 @@
         <meta name="keywords" content=""/>
         <meta name="description" content=""/>
         <!--=============== css  ===============-->
-        <link type="text/css" rel="stylesheet" href="front/css/reset.css">
-        <link type="text/css" rel="stylesheet" href="front/css/plugins.css">
-        <link type="text/css" rel="stylesheet" href="front/css/style.css">
-        <link type="text/css" rel="stylesheet" href="front/css/yourstyle.css">
+        <link type="text/css" rel="stylesheet" href="{{asset('front/css/reset.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{asset('front/css/plugins.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{asset('front/css/style.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{asset('front/css/yourstyle.css')}}">
         <!--=============== favicons ===============-->
         <link rel="shortcut icon" href="front/images/favicon.ico">
     </head>
@@ -25,8 +25,8 @@
     @yield('content')
 
     @include('home.includes.footer')
-    <script type="text/javascript" src="front/js/jquery.min.js"></script>
-    <script type="text/javascript" src="front/js/plugins.js"></script>
-    <script type="text/javascript" src="front/js/scripts.js"></script>
+    <script type="text/javascript" src="{{asset('front/js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('front/js/plugins.js')}}"></script>
+    <script type="text/javascript" src="{{asset('front/js/scripts.js')}}"></script>
 
 </body>

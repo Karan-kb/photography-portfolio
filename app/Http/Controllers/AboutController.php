@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\AboutPhoto;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
@@ -116,4 +118,6 @@ class AboutController extends Controller
         return redirect()->back()->with('error', 'Details Not Found.');
 
     }
+ 
+    
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SingleBlogController;
 use App\Http\Controllers\SinglePortfolioController;
+use App\Http\Controllers\TestController;
 use App\Models\Home;
 use App\Models\Portfolio;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,10 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\HomeAboutController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\AboutAuthorController;
+use App\Http\Controllers\AboutPhotoController;
+use App\Http\Controllers\BlogPhotoController;
+use App\Http\Controllers\ContactPhotoController;
+use App\Http\Controllers\LinkController;
 
 use App\Http\Controllers\HomeBackendController;
 use App\Http\Controllers\HomeContactController;
@@ -205,6 +210,47 @@ Route::get('/blog-show', [HomeBlogController::class, 'blog_show'])->name('blog.s
 Route::get('/view-single-portfolio/{id}', [SinglePortfolioController::class, 'view_singlePortfolio'])->name('view-single-portfolio');
 
 Route::get('/view-single-blog/{id}', [SingleBlogController::class, 'view_singleBlog'])->name('view-single-blog');
+
+// Route::get('/test-view', [TestController::class, 'view_test'])->name('view-test');
+
+Route::get('/add-about-photo-extra', [AboutPhotoController::class, 'show_about_photo'])->name('add-about-photo-extra');
+
+
+Route::post('/add-about-photo-extra', [AboutPhotoController::class, 'create'])->name('add-about-extra-photos');
+
+Route::get('/view-about-photo-extra', [AboutPhotoController::class, 'view_about_photo'])->name('view-about-photo-extra');
+
+Route::get('/edit-about-extra-photo/{id}', [AboutPhotoController::class, 'edit_photo'])->name('edit-about-extra-photo');
+
+Route::post('/update-about-photo-extra/{id}', [AboutPhotoController::class, 'update_photo'])->name('update-about-photo-extra');
+
+Route::delete('/delete-about-extra-photo/{id}', [AboutPhotoController::class, 'delete_photo'])->name('delete-about-extra-photo');
+
+Route::get('/add-blog-photo-extra', [BlogPhotoController::class, 'view_blogPhoto'])->name('add-blog-photo-extra');
+Route::post('/add-blog-photo-extras', [BlogPhotoController::class, 'create'])->name('add-blog-extras-photo');
+Route::get('/view-blog-photo-extra', [BlogPhotoController::class, 'show_blogPhoto'])->name('view-blog-photo-extra');
+Route::get('/edit-blog-extra-photo/{id}', [BlogPhotoController::class, 'edit_blogPhoto'])->name('edit-blog-extra-photo');
+Route::post('/update-blog-photo-extra/{id}', [BlogPhotocontroller::class, 'update_blogPhoto'])->name('update-blog-photo-extra');
+Route::delete('/delete-blog-extra-photo/{id}', [BlogPhotoController::class, 'delete_blogPhoto'])->name('delete-blog-extra-photo');
+
+
+Route::get('/add-contacts-photo-extra', [ContactPhotoController::class, 'view'])->name('add-contacts-photo-extra');
+Route::post('/add-photo-contact-extra', [ContactPhotoController::class, 'create'])->name('add-photo-contact-extra');
+Route::get('/view-contacts-photo-extra', [ContactPhotoController::class, 'view_contactPhoto'])->name('view-contacts-photo-extra');
+Route::get('/edit-contact-extra-photo/{id}', [ContactPhotoController::class, 'edit_contactPhoto'])->name('edit-contact-extra-photo');
+Route::post('update-contact-photo-extra/{id}',[ContactPhotoController::class, 'update_contactPhoto'])->name('update-contact-photo-extra');
+Route::delete('/delete-contact-extra-photo/{id}', [ContactPhotoController::class, 'delete_contactPhoto'])->name('delete-contact-extra-photo');
+
+
+Route::get('/add-contacts-link', [LinkController::class, 'view'])->name('add-contacts-link');
+Route::post('/add-link-contact-extra', [LinkController::class, 'create'])->name('add-link-contact-extra');
+Route::get('/view-contacts-link', [LinkController::class, 'show'])->name('view-contacts-link');
+Route::get('/edit-contact-clink/{id}', [LinkController::Class, 'edit'])->name('edit-contact-clink');
+Route::post('/update-contact-link/{id}', [LinkController::class, 'update'])->name('update-contact-link');
+Route::delete('/delete-contact-link/{id}', [LinkController::class, 'delete'])->name('delete-contact-link');
+Route::get('/about_photo/{id}', [AboutController::class, 'show_single_about_photo'])->name('show_single_about_photo');
+
+
 
 
 

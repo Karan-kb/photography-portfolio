@@ -20,7 +20,22 @@
         <label for="description">Description</label>
         <input type="description" id="description" name="description" class="form-control"  required value="{{ $service->description }}">
     </div>
+   
+    <div class="div_design">
+        <label>Current Service Images:</label>
+        @foreach (json_decode($service->images) as $image)
+            <img style="margin:auto;" height="100" width="100" src="{{ asset('images/' . $image) }}">
+        @endforeach
+    </div>
 
+    <div class="form-group">
+        <label for="image">Image</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image" name="image[]" multiple>
+            <label class="custom-file-label" for="image">Choose files</label>
+            <span id="selected-image"></span>
+        </div>
+    </div>
 
     <button type="submit" class="btn btn-primary">Update Service</button>
 

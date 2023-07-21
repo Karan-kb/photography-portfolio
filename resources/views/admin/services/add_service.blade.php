@@ -63,7 +63,15 @@
         <input type="description" id="description" name="description" class="form-control" required>
     </div>
 
-   
+    <div class="form-group">
+        <label for="image">Image</label>
+        <div class="custom-file">
+            <!-- use square brackets in the input name attribute to indicate an array -->
+            <input type="file" multiple class="custom-file-input" id="image" name="image[]" required>
+            <label class="custom-file-label" for="image">Choose file</label>
+            <span id="selected-image"></span>
+        </div>
+    </div>
 
     <button type="submit" class="btn btn-primary">Add Service</button>
 </form>

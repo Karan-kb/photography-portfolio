@@ -10,7 +10,7 @@
 
     .portfolio-table th,
     .portfolio-table td {
-        padding: 10px;
+        padding: 10px; 
         border: 1px solid #ccc;
     }
 </style>

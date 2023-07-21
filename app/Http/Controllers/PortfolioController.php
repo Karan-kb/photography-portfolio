@@ -15,38 +15,38 @@ class PortfolioController extends Controller
     }
 
     public function create_portfolio(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'image.*' => 'required|image',
-        ]);
+{
+    $validated = $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+        'image.*' => 'required|image',
+    ]);
 
-        $images = [];
+    $images = [];
 
-        foreach ($validated['image'] as $pic) {
-            $filename = "IMG" . date('YmdHis') . rand(100, 9999) . '.' . $pic->getClientOriginalExtension();
+    foreach ($validated['image'] as $pic) {
+        $filename = "IMG" . uniqid() . '.' . $pic->getClientOriginalExtension();
 
-            $pic->move(public_path('images'), $filename);
+        $pic->move(public_path('images'), $filename);
 
-            $images[] = $filename;
-        }
-
-    
-        $portfolio = Portfolio::create([
-            'title' => $validated['title'],
-            'description' => $validated['description'],
-            'images' => json_encode($images),
-        ]);
-
-        if ($portfolio) {
-            // Portfolio created successfully
-            return redirect()->back()->with('success', 'Portfolio added successfully.');
-        } else {
-            // Portfolio creation failed
-            return redirect()->back()->with('error', 'Failed to add portfolio.');
-        }
+        $images[] = $filename;
     }
+
+    $portfolio = Portfolio::create([
+        'title' => $validated['title'],
+        'description' => $validated['description'],
+        'images' => json_encode($images),
+    ]);
+
+    if ($portfolio) {
+        // Portfolio created successfully
+        return redirect()->back()->with('success', 'Portfolio added successfully.');
+    } else {
+        // Portfolio creation failed
+        return redirect()->back()->with('error', 'Failed to add portfolio.');
+    }
+}
+
     public function view_portfolio(){
 
         $portfolios = Portfolio::all();

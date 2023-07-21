@@ -36,6 +36,7 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Image</th>
                 
                 <th>Actions</th> <!-- Add a new column for actions -->
             </tr>
@@ -45,6 +46,14 @@
                 <tr>
                     <td>{{ $service->title }}</td>
                     <td>{{ $service->description }}</td>
+                    <td>
+                        @if(!empty($service->images))
+                        @foreach(json_decode($service->images) as $image)
+                            <img src="{{ asset('images/' . $image) }}" alt="service Image" width="100">
+                        @endforeach
+                    @endif
+                    
+                    </td>
                   
                     <td>
                         <!-- Buttons for edit and delete -->

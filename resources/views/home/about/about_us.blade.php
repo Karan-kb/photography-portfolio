@@ -44,15 +44,32 @@
             @foreach($about as $about)
            
             <div class="overlay"></div>
-            @foreach(json_decode($about->images) as $image)
-            <div class="bg" style="background-image: url(front/images/532559.jpg)" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"></div>
+           
+            @if ($about_photo && $about_photo->images)
+            @php
+                $images = json_decode($about_photo->images);
+                $image = $images[0] ?? null;
+            @endphp
+            @if ($image)
+                <div class="bg" style="background-image: url({{ asset('images/' . $image) }})" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"></div>
+            @endif
+        @endif
+        
+        
+        
+           
             <div class="container">
-              
+                <h2>About us</h2>
+                @foreach(json_decode($about->images) as $image)
               <div class="separator-image"><img src="url({{ asset('images/' . $image) }})" alt=""></div>
-              
+              @endforeach
+              @if ($about_photo && $about_photo->title)
+              <h3 class="subtitle">{{ $about_photo->title }}</h3>
+          @endif
+          
             </div>
             <a class="custom-scroll-link sect-scroll" href="#sec1"><i class="fa fa-angle-double-down"></i></a>
-            @endforeach
+           
            
           </section>
           
@@ -149,10 +166,8 @@
                                 <div class="team-photo">
                                     <div class="overlay"></div>
                                     <ul class="team-social">
-                                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" target="_blank"><i class="fa fa-tumblr"></i></a></li>
-                                        <li><a href="#" target="_blank"><i class="fa fa-behance"></i></a></li>
+                                        
+                                        
                                     </ul>
                                     @foreach(json_decode($teamMember->images) as $image)
                                         <img src="{{ asset('images/' . $image) }}" alt="" class="respimg">

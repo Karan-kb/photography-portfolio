@@ -67,8 +67,19 @@ public function update_service(Request $request, $id){
 
     $service->title = $request->title;
     $service->description = $request->description;
+    $images = $request->file('image');
 
-   
+    if ($images) {
+        $imagePaths = [];
+
+        foreach ($images as $image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('images', $imagename);
+            $imagePaths[] = $imagename;
+        }
+
+        $service->images = json_encode($imagePaths);
+    }
 
    
 

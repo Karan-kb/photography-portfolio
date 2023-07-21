@@ -11,7 +11,8 @@ class SingleBlogController extends Controller
     public function view_singleBlog($id){
 
         $blog = Blog::find($id);
-        return view('home.blog.blog_single', compact('blog'));
+        
+        return view('home.blog_single', compact('blog'));
 
     }
 }
