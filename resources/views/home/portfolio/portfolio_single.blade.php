@@ -1,5 +1,11 @@
 @extends('home.layout.front')
 
+@section('meta_tags')
+    <!-- Meta tags specific to the About page -->
+    <meta name="description" content="Portfolio- Keshab Photography">
+    <meta name="keywords" content="portfolio_view,portfolio_single,portfoliopage, photography,keshab,photo">
+@endsection
+
 @section('content')
     <!-- header end -->
     <!--=============== wrapper ===============-->

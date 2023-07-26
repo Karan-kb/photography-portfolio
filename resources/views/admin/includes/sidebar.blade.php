@@ -142,7 +142,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#blogphotoCollapse" data-toggle="collapse" aria-expanded="true"
             aria-controls="blogphotoCollapse">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fas fa-image"></i>
             <span>Blog Photo</span>
         </a>
         <div id="blogphotoCollapse" class="collapse" aria-labelledby="aboutHeading" data-parent="#accordionSidebar">
@@ -187,7 +187,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#contactphotoCollapse" data-toggle="collapse" aria-expanded="true"
         aria-controls="contactphotoCollapse">
-        <i class="fas fa-address-book"></i>
+        <i class="fas fa-images"></i>
         <span>Contacts Photo</span>
     </a>
         <div id="contactphotoCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
@@ -199,9 +199,9 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#contactlinkCollapse" data-toggle="collapse" aria-expanded="true"
+       <a class="nav-link collapsed" href="#contactlinkCollapse" data-toggle="collapse" aria-expanded="true"
         aria-controls="contactlinkCollapse">
-        <i class="fas fa-address-book"></i>
+        <i class="fas fa-link"></i>
         <span>Contacts Links</span>
     </a>
         <div id="contactlinkCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
@@ -211,6 +211,90 @@
             </div>
         </div>
     </li>
+
+    <li class="nav-item">
+         <a class="nav-link collapsed" href="#homemetaCollapse" data-toggle="collapse" aria-expanded="true"
+        aria-controls="homemetaCollapse">
+        <i class="fas fa-cogs"></i>
+        <span>Home Meta</span>
+    </a>
+        <div id="homemetaCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-home-meta')}}">View Meta</a>
+                <a class="collapse-item" href="{{route('add-home-meta')}}">Add Meta</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#aboutmetaCollapse" data-toggle="collapse" aria-expanded="true"
+        aria-controls="aboutmetaCollapse">
+        <i class="fas fa-cogs"></i>
+        <span>About Meta</span>
+    </a>
+        <div id="aboutmetaCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-meta')}}">View Meta</a>
+                <a class="collapse-item" href="{{route('add-meta')}}">Add Meta</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#portfoliometaCollapse" data-toggle="collapse" aria-expanded="true"
+        aria-controls="portfoliometaCollapse">
+        <i class="fas fa-cogs"></i>
+        <span>Portfolio Meta</span>
+    </a>
+        <div id="portfoliometaCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-portfolio-meta')}}">View Meta</a>
+                <a class="collapse-item" href="{{route('add-portfolio-meta')}}">Add Meta</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+       <a class="nav-link collapsed" href="#blogmetaCollapse" data-toggle="collapse" aria-expanded="true"
+        aria-controls="blogmetaCollapse">
+        <i class="fas fa-cogs"></i>
+        <span>Blog Meta</span>
+    </a>
+        <div id="blogmetaCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-blog-meta')}}">View Meta</a>
+                <a class="collapse-item" href="{{route('add-blog-meta')}}">Add Meta</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+       <a class="nav-link collapsed" href="#contactmetaCollapse" data-toggle="collapse" aria-expanded="true"
+        aria-controls="contactmetaCollapse">
+        <i class="fas fa-cogs"></i>
+        <span>Contact Meta</span>
+    </a>
+        <div id="contactmetaCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('view-contact-meta')}}">View Meta</a>
+                <a class="collapse-item" href="{{route('add-contact-meta')}}">Add Meta</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#clientdetailsCollapse" data-toggle="collapse" aria-expanded="true"
+         aria-controls="clientdetailsCollapse">
+         <i class="fas fa-cogs"></i>
+         <span>client Details</span>
+     </a>
+         <div id="clientdetailsCollapse" class="collapse" aria-labelledby="contactsHeading" data-parent="#accordionSidebar">
+             <div class="bg-white py-2 collapse-inner rounded">
+                 <a class="collapse-item" href="">View Client Details</a>
+                 <a class="collapse-item" href="{{route('add-client-details')}}">Add Client Details</a>
+             </div>
+         </div>
+     </li>
 
     
 

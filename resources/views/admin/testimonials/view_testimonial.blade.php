@@ -38,6 +38,7 @@
                 <th>Company</th>
                 <th>Message</th>
                 <th>Image</th>
+                <th>Second Image</th>
                 <th>Actions</th> <!-- Add a new column for actions -->
             </tr>
         </thead>
@@ -48,10 +49,26 @@
                     <td>{{ $testimonial->company }}</td>
                     <td>{{ $testimonial->message }}</td>
                     <td>
-                        @foreach(json_decode($testimonial->image) as $image)
-                            <img src="{{ asset('images/' . $image) }}" alt="Portfolio Image" width="100">
-                        @endforeach
+                        @if(isset($testimonial->image) && is_string($testimonial->image) && json_decode($testimonial->image))
+                            @foreach(json_decode($testimonial->image) as $image)
+                                <img src="{{ asset('images/' . $image) }}" alt="Testimonial Image" width="100">
+                            @endforeach
+                        @else
+                            <p>No images found.</p>
+                        @endif
                     </td>
+                    <td>
+                        @if(isset($testimonial->image1) && is_string($testimonial->image1) && json_decode($testimonial->image1))
+                            @foreach(json_decode($testimonial->image1) as $image1)
+                                <img src="{{ asset('image1/' . $image1) }}" alt="Second Testimonial Image" width="100">
+                            @endforeach
+                        @else
+                            <p>No second images found.</p>
+                        @endif
+                    </td>
+                    
+                    
+                    
                     <td>
                         <!-- Buttons for edit and delete -->
                         <form action="{{ route('edit-testimonials', $testimonial->id) }}" method="GET" style="display: inline-block;">

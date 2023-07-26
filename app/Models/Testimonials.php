@@ -14,10 +14,11 @@ class Testimonials extends Model
         'company',
         'message',
         'image',
-    ];
-    
-    protected $casts=[
-        'image'=>'array',
+        'image1',
     ];
 
+    protected $casts = [
+        'image' => 'array',
+        'image1' => 'array',
+    ];
 }

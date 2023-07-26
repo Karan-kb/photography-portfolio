@@ -1,4 +1,11 @@
 @extends('home.layout.front')
+@section('meta_tags')
+    <!-- Meta tags specific to the About page -->
+    @foreach($contactmeta as $contactmeta)
+    <meta name="description" content="{{$contactmeta->meta_description}}">
+    <meta name="keywords" content="{{$contactmeta->meta_tags}}">
+    @endforeach
+@endsection
 @section('content')
 <style>
     .form-group {
@@ -44,12 +51,18 @@
         <!--  Page title section   -->
         <section class="parallax-section">
             <div class="overlay"></div>
-            <div class="bg" style="background-image:url(front/images/IMG_20200122_142333.jpg)" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"></div>
+            @foreach($contact_photo as $contact_photos)
+            @foreach(json_decode($contact_photo->images) as $image)
+            <div class="bg" style="background-image:url({{ asset('images/' . $image) }})" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"></div>
+            @endforeach
+            @endforeach
             <div class="container">
                 <h2>Contacts</h2>
                 @foreach($contacts as $contact)
                 <div class="separator"></div>
-                <h3 class="subtitle">Nunc convallis ante at mi scelerisque quis cursus risus auctor. </h3>
+                @if($contact_photo)
+                <h3 class="subtitle">{{$contact_photo->title}} </h3>
+                @endif
                 @endforeach
             </div>
             <a class="custom-scroll-link sect-scroll" href="#sec1"><i class="fa fa-angle-double-down"></i></a>
@@ -83,28 +96,63 @@
         </section>
         <!--  Section contact info end   -->
         <!--  Section social   -->
+        {{-- <section class="no-padding">
+            <div class="content">
+                <div class="inline-facts-holder">
+                    @if($contactlink)
+                        @foreach($contactlink as $link)
+                        <div class="inline-facts">
+                            <h6><a href="{{ $link->facebook_url }}">Facebook</a></h6>
+                        </div>
+                        <div class="inline-facts">
+                            <h6><a href="{{ $link->instagram_url }}">Instagram</a></h6>
+                        </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </section> --}}
+
         <section class="no-padding">
             <div class="content">
                 <div class="inline-facts-holder">
-                    <div class="inline-facts">
-                        <h6><a href="https://www.facebook.com/KeshabPhotography170">Facebook</a></h6>
-                    </div>
-                    
-                    <div class="inline-facts">
-                        <h6><a href="https://www.instagram.com/keshab.photography/">Instagram</a></h6>
-                    </div>
-                    
+                     <section class="no-padding">
+            <div class="content">
+                <div class="inline-facts-holder">
+                    @if ($contactlink && $contactlink->facebook_url)
+                    @php
+                        $facebook_url =$contactlink->facebook_url;
+                        $facebook_url = $facebook_url[0] ?? null;
+                    @endphp
+                    @if ($facebook_url)
+                         <div class="inline-facts">
+                                    <h6><a href="{{ $contactlink->facebook_url }}">Facebook</a></h6>
+                                </div>
+                                <div class="inline-facts">
+                                    <h6><a href="{{ $contactlink->instagram_url }}">Instagram</a></h6>
+                                </div>
+                    @endif
+                @endif
                 </div>
             </div>
         </section>
+                </div>
+            </div>
+        </section>
+        
+        
         <!-- social end  -->
         <!--  Section map   -->
         <section class="no-padding" id="sec2">
             <div class="map-box">
-                <div class="map-holder" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);">
-                    <div id="map-canvas"></div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3522.843234774585!2d-77.01267815417326!3d38.90424537964959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24f2905e6b80b%3A0x3851f28171e29974!2s300%20Massachusetts%20Ave%2C%20Washington%2C%20DC%2020001!5e0!3m2!1sen!2sus!4v1657427034035!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+                
+                <div class="map-box">
+                    <div class="map-holder" data-top-bottom="transform: translateY(300px);" data-bottom-top="transform: translateY(-300px);">
+                        
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14133.072425783655!2d85.3374398!3d27.6781073!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19f2c8478921%3A0xb87efc56819a29e6!2sKeshab%20Studioz!5e0!3m2!1sen!2snp!4v1690270861204!5m2!1sen!2snp" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+           
+
+            <div>
             </div>
         </section>
         

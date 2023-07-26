@@ -75,6 +75,16 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="image1">Back Image</label>
+        <div class="custom-file">
+            <!-- use square brackets in the input name attribute to indicate an array -->
+            <input type="file" multiple class="custom-file-input" id="image1" name="image1[]" required>
+            <label class="custom-file-label" for="image1">Choose file</label>
+            <span id="selected-image"></span>
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-primary">Add Testimonial</button>
 </form>
 

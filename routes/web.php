@@ -1,34 +1,43 @@
 <?php
 
-use App\Http\Controllers\SingleBlogController;
-use App\Http\Controllers\SinglePortfolioController;
-use App\Http\Controllers\TestController;
 use App\Models\Home;
+use App\Models\HomeMeta;
 use App\Models\Portfolio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BlogMetaController;
 use App\Http\Controllers\HomeBlogController;
+use App\Http\Controllers\HomeMetaController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\AboutMetaController;
+use App\Http\Controllers\BlogPhotoController;
 use App\Http\Controllers\HomeAboutController;
 use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\AboutAuthorController;
 use App\Http\Controllers\AboutPhotoController;
-use App\Http\Controllers\BlogPhotoController;
-use App\Http\Controllers\ContactPhotoController;
-use App\Http\Controllers\LinkController;
-
+use App\Http\Controllers\SingleBlogController;
+use App\Http\Controllers\AboutAuthorController;
+use App\Http\Controllers\ContactMetaController;
 use App\Http\Controllers\HomeBackendController;
 use App\Http\Controllers\HomeContactController;
+use App\Http\Controllers\ClientDetailController;
+
+
+
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\ContactPhotoController;
 use App\Http\Controllers\HomePortfolioController;
+use App\Http\Controllers\PortfolioMetaController;
+use App\Http\Controllers\SinglePortfolioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +52,8 @@ use App\Http\Controllers\HomePortfolioController;
 
 Route::get('/', function () {
     $home = Home::all();
-    return view('home.index', compact('home'));
+    $homemeta= HomeMeta::all();
+    return view('home.index', compact('home','homemeta'));
 });
 
 
@@ -250,7 +260,50 @@ Route::post('/update-contact-link/{id}', [LinkController::class, 'update'])->nam
 Route::delete('/delete-contact-link/{id}', [LinkController::class, 'delete'])->name('delete-contact-link');
 Route::get('/about_photo/{id}', [AboutController::class, 'show_single_about_photo'])->name('show_single_about_photo');
 
+Route::get('/add-meta',[AboutMetaController::class, 'view'])->name('add-meta');
+Route::post('/add-meta-tags',[AboutMetaController::class, 'create'])->name('add-meta-tags');
+Route::get('/view-meta',[AboutMetaController::class, 'show'])->name('view-meta');
+Route::get('/edit-about-meta/{id}',[AboutMetaController::class, 'edit'])->name('edit-about-meta');
+Route::post('/update-about-meta/{id}',[AboutMetaController::class, 'update'])->name('update-about-meta');
+Route::delete('/delete-meta/{id}',[AboutMetaController::class, 'delete'])->name('delete-meta');
 
+
+Route::get('/add-portfolio-meta',[PortfolioMetaController::class, 'show'])->name('add-portfolio-meta');
+Route::post('/add-meta-for-portfolio',[PortfolioMetaController::class, 'create'])->name('add-meta-for-portfolio');
+Route::get('/view-portfolio-meta', [PortfolioMetaController::class, 'view'])->name('view-portfolio-meta');
+Route::get('/edit-portfolio-meta/{id}',[PortfolioMetaController::class, 'edit'])->name('edit-portfolio-meta');
+Route::post('/update-portfolio-meta/{id}',[PortfolioMetaController::class, 'update'])->name('update-portfolio-meta');
+Route::delete('/delete-portfolio-meta/{id}',[PortfolioMetacontroller::class, 'delete'])->name('delete-portfolio-meta');
+
+Route::get('/add-blog-meta',[BlogMetaController::Class, 'show'])->name('add-blog-meta');
+Route::post('/add-blogs-meta',[BlogMetaController::class, 'create'])->name('add-blogs-meta');
+Route::get('/view-blog-meta', [BlogMetaController::class, 'view'])->name('view-blog-meta');
+Route::get('/edit-blog-meta/{id}',[BlogMetaController::Class, 'edit'])->name('edit-blog-meta');
+Route::post('/update-blog-meta/{id}', [BlogMetaController::Class, 'update'])->name('update-blog-meta');
+Route::delete('/delete-blog-meta/{id}',[BlogMetaController::class, 'delete'])->name('delete-blog-meta');
+
+
+Route::get('/add-contact-meta',[ContactMetaController::class, 'show'])->name('add-contact-meta');
+Route::post('/add-contacts-meta', [ContactMetaController::class, 'create'])->name('add-contacts-meta');
+Route::get('view-contact-meta/', [ContactMetaController::class, 'view'])->name('view-contact-meta');
+Route::get('/edit-contact-meta/{id}', [ContactMetaController::class, 'edit'])->name('edit-contact-meta');
+Route::post('/update-contact-meta/{id}',[contactMetaController::class, 'update'])->name('update-contact-meta');
+Route::delete('/delete-contact-meta/{id}',[ContactMetaController::class, 'delete'])->name('delete-contact-meta');
+
+Route::get('add-home-meta',[HomeMetaController::class, 'show'])->name('add-home-meta');
+Route::post('/add-homes-meta',[HomeMetaController::class, 'create'])->name('add-homes-meta');
+Route::get('/view-home-meta',[HomeMetaController::class, 'view'])->name('view-home-meta');
+Route::get('/edit-home-meta/{id}', [HomeMetaController::class, 'edit'])->name('edit-home-meta');
+Route::post('/update-home-meta/{id}', [HomeMetaController::Class, 'update'])->name('update-home-meta');
+Route::delete('/delete-home-meta/{id}', [HomeMetaController::class, 'delete'])->name('delete-home-meta');
+
+Route::get('/add-admin', [SettingsController::class, 'create_adminForm'])->name('add-admin');
+Route::post('/add-new-admin',[SettingsController::class, 'addAdmin'])->name('add-new-admin');
+Route::get('/view-admin',[SettingsController::class, 'viewAdmin'])->name('view-admin');
+Route::get('/edit-admin/{id}',[SettingsController::class, 'editAdmin'])->name('edit-admin');
+Route::post('/update-admin/{id}',[SettingsController::class, 'updateAdmin'])->name('update-admin');
+
+Route::get('/add-client-details', [ClientDetailController::class, 'show'])->name('add-client-details');
 
 
 

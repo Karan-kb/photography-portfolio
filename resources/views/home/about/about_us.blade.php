@@ -1,10 +1,18 @@
 @extends('home.layout.front')
+
+@section('meta_tags')
+    <!-- Meta tags specific to the About page -->
+    @foreach($aboutmeta as $aboutmeta)
+    <meta name="description" content="{{$aboutmeta->meta_description}}">
+    <meta name="keywords" content="{{$aboutmeta->meta_tags}}">
+    @endforeach
+@endsection
 @section('content')
 <style>
 
 .testimonial-section .passport-size {
-  width: 50px !important;
-  height: 50px !important;
+  width: 10px !important;
+  height: 10px !important;
   border-radius: 50% !important;
   background-size: cover !important;
   background-position: center !important;
@@ -16,6 +24,17 @@
 
 
 
+
+.testimonial-section {
+  position: relative;
+  /* Add desired height for the testimonial section */
+}
+
+.testimonial-bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 
 
 
@@ -110,7 +129,7 @@
                         <i class="fa fa-picture-o "></i>
                         <div class="milestone-counter">
                             <div class="stats animaper">
-                                <div class="num" data-content="{{$about->photos_taken}}" data-num="{{$about->photos_taken}}"></div>
+                                <div class="num" data-content="{{$about->photos_taken}}" data-num="{{$about->photos_taken}}">{{$about->photos_taken}}</div>
                             </div>
                         </div>
                         <h6>Photos Taken</h6>
@@ -121,7 +140,7 @@
                         <i class="fa fa-suitcase "></i>
                         <div class="milestone-counter">
                             <div class="stats animaper">
-                                <div class="num" data-content="{{$about->projects_completed}}" data-num="{{$about->projects_completed}}">0</div>
+                                <div class="num" data-content="{{$about->projects_completed}}" data-num="{{$about->projects_completed}}">{{$about->projects_completed}}</div>
                             </div>
                         </div>
                         <h6>Projects completed</h6>
@@ -132,7 +151,7 @@
                         <i class="fa fa-coffee "></i>
                         <div class="milestone-counter">
                             <div class="stats animaper">
-                                <div class="num" data-content="{{$about->cups_of_coffee}}" data-num="{{$about->cups_of_coffee}}">0</div>
+                                <div class="num" data-content="{{$about->cups_of_coffee}}" data-num="{{$about->cups_of_coffee}}">{{$about->cups_of_coffee}}</div>
                             </div>
                         </div>
                         <h6>Cups of Coffee</h6>
@@ -143,7 +162,7 @@
                         <i class="fa fa-trophy"></i>
                         <div class="milestone-counter">
                             <div class="stats animaper">
-                                <div class="num" data-content="{{$about->clients_working}}" data-num="{{$about->clients_working}}">0</div>
+                                <div class="num" data-content="{{$about->clients_working}}" data-num="{{$about->clients_working}}">{{$about->clients_working}}</div>
                             </div>
                         </div>
                         <h6>Clients Working</h6>
@@ -188,8 +207,11 @@
         <!-- services   -->
         <section class="section-columns" id="sec4">
             <div class="section-columns-img">
-                <div class="bg bg-ser transition" style="background-image:url(front/images/975315.jpg)"></div>
+                @foreach(json_decode($latest_service->images) as $image)
+                    <div class="bg bg-ser transition" style="background-image:url({{ asset('images/' . $image) }})"></div>
+                @endforeach
             </div>
+            
             <div class="section-columns-text">
                 <div class="custom-inner">
                     <div class="container">
@@ -233,34 +255,49 @@
         <div class="testimonial-section">
             <section class="parallax-section small-padding" id="sec5">
                 <div class="overlay"></div>
-                <div class="bg" style="background-image:url(front/images/644208.jpg)" data-top-bottom="transform: translateY(150px);" data-bottom-top="transform: translateY(-150px);"></div>
-                <div class="container">
-                    <h2>Testimonials</h2>
-                    <div class="separator-image"><img src="images/separator.png" alt=""></div>
-                    <div class="testimonials-slider-holder">
-                        <div class="testimonials-slider owl-carousel">
-                            @foreach($testimonial as $testimonial)
-                                <div class="item">
-                                    <div class="testi-item">
-                                        @foreach(json_decode($testimonial->image) as $image)
-                                        <div class="testimonial-section">
-                                            <div class="passport-size" style="background-image: url('{{ asset('images/' . $image) }}');"></div>
-                                        </div>
-                                        
-                                        @endforeach
-                                        <h3>{{$testimonial->name}}</h3>
-                                        <p>{{$testimonial->message}}</p>
-                                        <a href="#">Via Twitter</a>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="customNavigation">
-                            <a class="next-slide transition"><i class="fa fa-angle-right"></i></a>
-                            <a class="prev-slide transition"><i class="fa fa-angle-left"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @if($latest_testi && $latest_testi->image1)
+    @foreach(json_decode($latest_testi->image1) as $image1)
+        <div class="bg testimonial-bg" style="background-image:url({{ asset('image1/' . $image1) }})" data-top-bottom="transform: translateY(150px);" data-bottom-top="transform: translateY(-150px);"></div>
+    @endforeach
+@endif
+
+<div class="container">
+    <h2>Testimonials</h2>
+    <div class="separator-image"><img src="images/separator.png" alt=""></div>
+    <div class="testimonials-slider-holder">
+        <div class="testimonials-slider owl-carousel">
+            @foreach($testimonial as $testimonialItem)
+<!-- Slide -->
+<div class="item">
+    <div class="testi-item">
+        <!-- Background Image -->
+        {{-- <div class="bg" style="background-image: url({{ asset('path/to/background/image.jpg') }});"></div> --}}
+        <!-- Add the testimonial image here -->
+        <div class="testimonial-image">
+            @foreach(json_decode($testimonialItem->image) as $image)
+            <img alt="{{ $testimonialItem->name }}" src="{{ asset('images/' . $image) }}">
+            @endforeach
+        </div>
+        <!-- Testimonial content -->
+        <div class="testimonial-content">
+            <h3>{{ $testimonialItem->name }}</h3>
+            <p>{{ $testimonialItem->message }}</p>
+        </div>
+    </div>
+</div>
+<!-- Slide end -->
+@endforeach
+
+        </div>
+        <!-- Navigation arrows -->
+        <div class="customNavigation">
+            <a class="prev-slide transition"><i class="fa fa-angle-left"></i></a>
+            <a class="next-slide transition"><i class="fa fa-angle-right"></i></a>
+        </div>
+        <!-- Navigation arrows end -->
+    </div>
+</div>
+
             </section>
             
     </div>
@@ -272,3 +309,18 @@
 </div>
 
 @endsection
+{{-- <script>
+$(document).ready(function() {
+    $('.milestone-counter .num').each(function () {
+        $(this).prop('Counter', 0).animate({
+            Counter: $(this).attr('data-content')
+        }, {
+            duration: 3000, // The duration of the counting animation in milliseconds
+            easing: 'swing', // The easing function used for the animation
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+});
+</script> --}}

@@ -1,5 +1,13 @@
 @extends('home.layout.front')
 
+@section('meta_tags')
+    <!-- Meta tags specific to the About page -->
+	@foreach($homemeta as $homemeta)
+    <meta name="description" content="{{$homemeta->meta_description}}">
+    <meta name="keywords" content="{{$homemeta->meta_tags}}">
+	@endforeach
+@endsection
+
 @section('content')
 <div id="wrapper">
 	<!--=============== Content holder  ===============-->

@@ -44,6 +44,27 @@
         </div>
     </div>
 
+    
+    <div class="div_design">
+        <label>Current Second Testimonials Images:</label>
+        @if($testimonial->image1)
+            @foreach (json_decode($testimonial->image1) as $image1)
+                <img style="margin:auto;" height="100" width="100" src="{{ asset('image1/' . $image1) }}">
+            @endforeach
+        @endif
+    </div>
+
+    <div class="form-group">
+        <label for="image1">Second Image</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image1" name="image1[]" multiple>
+            <label class="custom-file-label" for="image1">Choose files</label>
+            <span id="selected-image"></span>
+        </div>
+    </div>
+    
+
+
     <button type="submit" class="btn btn-primary">Update Testimonial</button>
 
 </form>

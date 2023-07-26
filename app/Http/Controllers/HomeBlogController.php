@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\BlogMeta;
+use App\Models\BlogPhoto;
 use App\Models\AboutAuthor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,10 +15,12 @@ class HomeBlogController extends Controller
 
         $blog= Blog::paginate(2);
         $about_author = AboutAuthor::all();
+        $blog_photo = BlogPhoto::latest()->first();
+        $blogmeta = BlogMeta::all();
      
 
         
-        return view('home.blog.view_blog',compact('blog' , 'about_author'));
+        return view('home.blog.view_blog',compact('blog' , 'about_author','blog_photo','blogmeta'));
     }
     
     public function blog_show()

@@ -1,4 +1,11 @@
 @extends('home.layout.front')
+@section('meta_tags')
+    <!-- Meta tags specific to the About page -->
+    @foreach($portfoliometa as $portfoliometa)
+    <meta name="description" content="{{$portfoliometa->meta_description}}">
+    <meta name="keywords" content="{{$portfoliometa->meta_tags}}">
+    @endforeach
+@endsection
 @section('content')
 <div class="content">
     <section>

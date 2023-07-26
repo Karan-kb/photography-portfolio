@@ -1,4 +1,11 @@
 @extends('home.layout.front')
+@section('meta_tags')
+    <!-- Meta tags specific to the About page -->
+    @foreach($blogmeta as $blogmeta)
+    <meta name="description" content="{{$blogmeta->meta_description}}">
+    <meta name="keywords" content="{{$blogmeta->meta_tags}}">
+    @endforeach
+@endsection
 @section('content')
 <div class="content-holder elem scale-bg2 transition3">
     <div class="fixed-title"><span>Journal</span></div>
@@ -7,7 +14,12 @@
         <!--section  page title   -->
         <section class="parallax-section">
             <div class="overlay"></div>
-            <div class="bg" style="background-image:url(front/images/bg/22.jpg)" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"></div>
+            @foreach($blog_photo as $blogphoto)
+             
+            @foreach(json_decode($blog_photo->images) as $image)
+            <div class="bg" style="background-image:url({{ asset('images/' . $image) }})" data-top-bottom="transform: translateY(200px);" data-bottom-top="transform: translateY(-200px);"></div>
+            @endforeach
+            @endforeach
             <div class="container">
                 <h2>Our Journal</h2>
                 <div class="separator"></div>

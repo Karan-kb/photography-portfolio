@@ -1,4 +1,9 @@
 @extends('home.layout.front')
+@section('meta_tags')
+    <!-- Meta tags specific to the About page -->
+    <meta name="description" content="Blog- Keshab Photography">
+    <meta name="keywords" content="blog,blog_single,blogs,blogpage, photography,keshab_blogs,photo">
+@endsection
 @section('content')
 
 <div id="wrapper">
