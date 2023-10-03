@@ -183,13 +183,15 @@
                         <li>
                             <div class="team-box">
                                 <div class="team-photo">
-                                    <div class="overlay"></div>
-                                    <ul class="team-social">
+                                  
+                                    {{-- <ul class="team-social">
                                         
                                         
-                                    </ul>
+                                    </ul> --}}
                                     @foreach(json_decode($teamMember->images) as $image)
-                                        <img src="{{ asset('images/' . $image) }}" alt="" class="respimg">
+                                    
+                                       <img class="img img-fluid object-fit-contain" height="240px" width="200px" src="{{ asset('images/' . $image) }}" alt="" > 
+                                    
                                     @endforeach
                                 </div>
                                 <div class="team-info">
@@ -208,7 +210,7 @@
         <section class="section-columns" id="sec4">
             <div class="section-columns-img">
                 @foreach(json_decode($latest_service->images) as $image)
-                    <div class="bg bg-ser transition" style="background-image:url({{ asset('images/' . $image) }})"></div>
+                    <div class="bg bg-ser transition" style="background-image:url({!! asset("images/" . $image) !!})"></div>
                 @endforeach
             </div>
             
